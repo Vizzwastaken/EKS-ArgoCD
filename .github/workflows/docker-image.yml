@@ -36,4 +36,10 @@ jobs:
            DEFAULT_BRANCH: master
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            VALIDATE_PYTHON3: true
+           
+      - name: Docker Login
+        uses: docker/login-action@v2.1.0
+        with:
+          username: vizzwastaken
+          password: Ronaldocr7
 
