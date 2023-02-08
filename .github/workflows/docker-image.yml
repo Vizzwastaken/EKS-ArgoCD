@@ -9,7 +9,7 @@ on:
 
 jobs:
   Basic-Quality-Checks:
-    runs-on: ubuntu-latest,
+    runs-on: ubuntu-latest
     steps:
       - name: checkout files
         uses: actions/checkout@v3
