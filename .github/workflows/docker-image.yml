@@ -1,18 +1,42 @@
 name: Docker Image CI
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "Develop" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
+  Basic-Quality-Checks:
+    runs-on: ubuntu-latest,
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: checkout files
+        uses: actions/checkout@v3
+
+      - name: check if Docker File exists
+        run: |
+          if [ -f /{{repo_name}}/Dockerfile ]; then
+            echo "====================================="
+            echo "        Docker file exists"
+            echo "====================================="
+          else
+            echo "====================================="
+            echo "      Docker file dosent exist"
+            echo "====================================="
+          fi    
+
+#       - name: Linting source code
+#         uses: github/super-linter@v4
+#         env:
+#           VALIDATE_ALL_CODEBASE: false
+#           DEFAULT_BRANCH: master
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           VALIDATE_PYTHON3: true
+#   build:
+#       runs-on: ubuntu-latest
+
+#       steps:
+#       - uses: actions/checkout@v3
+#       - name: Build the Docker image
+#         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
