@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # This is a simple calculator
 
 print("------------------------")
@@ -16,26 +15,23 @@ Operator = int(input("Select your Operation : "))
 if Operator == 1:
     Num1 = int(input("Enter the First Number  : "))
     Num2 = int(input("Enter the Second Number : "))
-    Res = Num1+Num2
-    print("The Result is = ",Res)
+    Res = Num1 + Num2
+    print("The Result is = ", Res)
 elif Operator == 2:
     Num1 = int(input("Enter the First Number  : "))
     Num2 = int(input("Enter the Second Number : "))
-    Res = Num1-Num2
-    print("The Result is = ",Res)
+    Res = Num1 - Num2
+    print("The Result is = ", Res)
 elif Operator == 3:
     Num1 = int(input("Enter the First Number  : "))
     Num2 = int(input("Enter the Second Number : "))
-    Res = Num1*Num2
-    print("The Result is = ",Res)
+    Res = Num1 * Num2
+    print("The Result is = ", Res)
 elif Operator == 4:
     Num1 = int(input("Enter the Numerator   : "))
     Num2 = int(input("Enter the Denominator : "))
     if Num1 == 0:
         print("Numerator cant be Zero")
     else:
-        Res = Num1/Num2
-        print("The Result is = ",Res)
-
-
-
+        Res = Num1 / Num2
+        print("The Result is = ", Res)
