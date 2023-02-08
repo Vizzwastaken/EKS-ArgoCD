@@ -33,5 +33,5 @@ elif Operator == 4:
     if Num1 == 0:
         print("Numerator cant be Zero")
     else:
-        Res = Num1 / Num2
+        Res = Num1 // Num2
         print("The Result is = ", Res)
