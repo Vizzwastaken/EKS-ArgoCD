@@ -1,1 +1,8 @@
 
+- name: Docker Login
+ 
+  uses: docker/login-action@v2.1.0
+  with:
+    username: # optional
+    # Password or personal access token used to log against the Docker registry
+    password: # optional
