@@ -18,7 +18,7 @@ jobs:
         run: |
           ls -lrt
           echo ${{ github.event.repository.name }}
-          if [ -f /${{ github.event.repository.name }}/Dockerfile ]; then
+          if [ -f ./Dockerfile ]; then
             echo "====================================="
             echo "        Docker file exists"
             echo "====================================="
