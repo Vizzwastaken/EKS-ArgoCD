@@ -43,4 +43,16 @@ jobs:
         with:
           username: vizzwastaken
           password: ${{ secrets.DOCKER_PASS }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: vizzwastaken/demo:latest
+        
+      - name: Pull
+        uses: docker/build-push-action@v4
+        with:
+          pull: true
+          tags: vizzwastaken/demo:latest
 
