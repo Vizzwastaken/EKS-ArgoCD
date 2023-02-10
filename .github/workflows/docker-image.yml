@@ -43,7 +43,11 @@ jobs:
         with:
           username: vizzwastaken
           password: ${{ secrets.DOCKER_PASS }}
-      
+          
+  Push-Docker-Image:
+    needs: [Basic-Quality-Checks]
+    runs-on: ubuntu-latest
+    steps:        
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
