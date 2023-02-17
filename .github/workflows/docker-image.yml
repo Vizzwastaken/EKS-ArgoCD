@@ -93,8 +93,8 @@ jobs:
       - name: Copy Ssh-key
         run: |
           ssh-agent bash
-          chmod 600 ~/.ssh/key.pem
-          ssh-add ~/.ssh/key.pem
+          chmod 600 /home/runner/.ssh
+          ssh-add /home/runner/.ssh/key.pem
           
       - name: Add Inventory File
         run: |
