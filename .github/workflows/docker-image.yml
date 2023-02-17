@@ -96,7 +96,7 @@ jobs:
           sudo echo ${{ secrets.IP_ADDR }} > /etc/ansible/hosts
           
       - name: Run Playbook
-        run: ansible-playbook masterplaybook.yaml --extra-vars pass=${{ secrets.DH_PASS}}
+        run: ansible-playbook masterplaybook.yaml --extra-vars pass=${{ secrets.DOCKER_PASS }}
         
 
           
