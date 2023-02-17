@@ -83,20 +83,18 @@ jobs:
           sudo apt update
           sudo apt install ansible
         
- #     - name: Copy Ssh-key
- #       run: |
- #         echo '${{ secrets.SSH_KEY }}' > key.pem
- #         ssh-agent bash
- #         mkdir /home/runner/.ssh
- #         cp key.pem ~/.ssh/
- #         chmod 600 ~/.ssh/key.pem
- #         ssh-add ~/.ssh/key.pem
  
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
             key: ${{ secrets.SSH_KEY }}
             known_hosts: unnecessary
+            
+      - name: Copy Ssh-key
+        run: |
+          ssh-agent bash
+          chmod 600 ~/.ssh/key.pem
+          ssh-add ~/.ssh/key.pem
           
       - name: Add Inventory File
         run: |
