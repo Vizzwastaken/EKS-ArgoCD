@@ -101,7 +101,7 @@ jobs:
       - name: Add Inventory File
         run: |
           sudo sh -c "echo [servers] > /etc/ansible/hosts"
-          sudo sh -c "echo ${{ secrects.IP_ADDR }} >> /etc/ansible/hosts"
+          sudo sh -c "echo ${{ secrets.IP_ADDR }} >> /etc/ansible/hosts"
 
           
       - name: Run Playbook
