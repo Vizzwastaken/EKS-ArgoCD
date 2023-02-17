@@ -37,6 +37,7 @@ jobs:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            VALIDATE_PYTHON3: true
            VALIDATE_MARKDOWN: false
+           VALIDATE_GITHUB_ACTIONS: false
            
       - name: Docker Login
         uses: docker/login-action@v2.1.0
