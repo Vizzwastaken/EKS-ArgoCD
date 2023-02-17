@@ -85,7 +85,7 @@ jobs:
         
       - name: Copy Ssh-key
         run: |
-          echo ${{ secrets.SSH_KEY }} > key.pem
+          echo '${{ secrets.SSH_KEY }}' > key.pem
           ssh-agent bash
           cp key.pem ~/.ssh/
           chmod 600 ~/.ssh/key.pem
