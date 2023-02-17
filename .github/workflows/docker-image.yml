@@ -48,6 +48,9 @@ jobs:
     needs: [Basic-Quality-Checks]
     runs-on: ubuntu-latest
     steps:        
+      - name: Check out
+        uses: actions/checkout@v3
+        
       - name: Docker Login
         uses: docker/login-action@v2.1.0
         with:
@@ -60,9 +63,44 @@ jobs:
           push: true
           tags: vizzwastaken/demo:latest
         
+  Deploy-Ansible-Playbook:
+    needs: [Push-Docker-Image]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        
       - name: Pull
         uses: docker/build-push-action@v4
         with:
           pull: true
           tags: vizzwastaken/demo:latest
+        
+      - name: Install Ansible
+        run: |
+          sudo apt-add-repository ppa:ansible/ansible
+          sudo apt update
+          sudo apt install ansible
+        
+      - name: Copy Ssh-key
+        run: |
+          echo ${{ secrets.SSH_KEY }} > key.pem
+          ssh-agent bash
+          cp key.pem ~/.ssh/
+          chmod 600 ~/.ssh/key.pem
+          ssh-add ~/.ssh/key.pem
+          
+      - name: Add Inventory File
+        run: |
+          sudo echo [servers] > /etc/ansible/hosts
+          sudo echo ${{ secrets.IP_ADDR }} > /etc/ansible/hosts
+          
+      - name: Run Playbook
+        run: ansible-playbook masterplaybook.yaml
+        
+
+          
+          
+    
+    
 
