@@ -54,7 +54,7 @@
     - name: Docker Login
       docker_login:
         username: vizzwastaken
-        password: {{ pass }}
+        password: "{{ pass }}"
         reauthorize: yes
 
     - name: Pull the container
