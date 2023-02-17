@@ -87,6 +87,7 @@ jobs:
         run: |
           echo '${{ secrets.SSH_KEY }}' > key.pem
           ssh-agent bash
+          mkdir /home/runner/.ssh
           cp key.pem ~/.ssh/
           chmod 600 ~/.ssh/key.pem
           ssh-add ~/.ssh/key.pem
