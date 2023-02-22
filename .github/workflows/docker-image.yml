@@ -83,25 +83,25 @@ jobs:
           sudo apt update
           sudo apt install ansible
         
-      - name: Add SSH key and known_hosts for EC2 instance
-        run: |
-          sudo sh -c "echo ${{ secrets.SSH_KEY }} > /home/runner/.ssh/id_rsa"
-          chmod 400 /home/runner/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.IP_ADDR }} >> /home/runner/.ssh/known_hosts
+      # - name: Add SSH key and known_hosts for EC2 instance
+      #   run: |
+      #     sudo sh -c "echo ${{ secrets.SSH_KEY }} > /home/runner/.ssh/id_rsa"
+      #     chmod 400 /home/runner/.ssh/id_rsa
+      #     ssh-keyscan -H ${{ secrets.IP_ADDR }} >> /home/runner/.ssh/known_hosts
           
 #         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
 
-#       - name: Install SSH key
-#         uses: shimataro/ssh-key-action@v2
-#         with:
-#             key: ${{ secrets.SSH_KEY }}
-#             known_hosts: unnecessary
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+            key: ${{ secrets.SSH_KEY }}
+            known_hosts: unnecessary
             
-#       - name: Copy Ssh-key
-#         run: |
-#           ssh-agent bash
-#           chmod 600 /home/runner/.ssh
-#           ssh-add /home/runner/.ssh/key.pem
+      # - name: Copy Ssh-key
+      #   run: |
+      #     ssh-agent bash
+      #     chmod 600 /home/runner/.ssh
+      #     ssh-add /home/runner/.ssh/key.pem
           
       - name: Add Inventory File
         run: |
