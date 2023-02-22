@@ -85,9 +85,11 @@ jobs:
         
       - name: Add SSH key and known_hosts for EC2 instance
         run: |
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.IP_ADDR }} >> ~/.ssh/known_hosts
+          sudo sh -c "echo ${{ secrets.SSH_KEY }} > /home/runner/.ssh/id_rsa"
+          chmod 400 /home/runner/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.IP_ADDR }} >> /home/runner/.ssh/known_hosts
+          
+#         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
 
 #       - name: Install SSH key
 #         uses: shimataro/ssh-key-action@v2
