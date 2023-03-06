@@ -95,7 +95,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
             key: ${{ secrets.SSH_KEY }}
-            known_hosts: unnecessary
+            known_hosts: 34.238.115.106
             
       # - name: Copy Ssh-key
       #   run: |
@@ -106,7 +106,7 @@ jobs:
       - name: Add Inventory File
         run: |
           sudo sh -c "echo [servers] > /etc/ansible/hosts"
-          sudo sh -c "echo ${{ secrets.IP_ADDR }} >> /etc/ansible/hosts"
+          sudo sh -c "echo 3.83.17.87 >> /etc/ansible/hosts"
           sudo cat /etc/ansible/hosts
 
           
