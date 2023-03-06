@@ -90,11 +90,6 @@ jobs:
             key: ${{ secrets.SSH_KEY }}
             known_hosts: ${{ secrets.KNOWN_HOST }}
             
-      # - name: Copy Ssh-key
-      
-      #     ssh-agent bash
-      #     chmod 600 /home/runner/.ssh
-      #     ssh-add /home/runner/.ssh/key.pem
           
       - name: Add Inventory File
         run: |
