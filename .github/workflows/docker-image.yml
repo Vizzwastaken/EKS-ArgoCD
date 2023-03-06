@@ -95,7 +95,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
             key: ${{ secrets.SSH_KEY }}
-            known_hosts: ${{ secrects.KNOWN_HOST }}
+            known_hosts: ${{ secrets.KNOWN_HOST }}
             
       - name: Copy Ssh-key
         run: |
