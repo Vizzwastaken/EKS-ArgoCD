@@ -82,18 +82,19 @@ jobs:
           host: 34.238.115.106
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          source: .
-          target: /home/ubuntu/
+          script: |
+            ansible-playbook masterplaybook.yaml 
 
-      - name: SSH
-        run: |
-          ls
-          ssh -i ${{ secrets.SSH_KEY }} ubuntu@ec2-34-238-115-106.compute-1.amazonaws.com
 
-      - name: Run Ansible playbook
-        run: |
-           ls 
-           ansible-playbook masterplaybook.yaml 
+      # - name: SSH
+      #   run: |
+      #     ls
+      #     ssh -i ${{ secrets.SSH_KEY }} ubuntu@ec2-34-238-115-106.compute-1.amazonaws.com
+
+      # - name: Run Ansible playbook
+      #   run: |
+      #      ls 
+      #      ansible-playbook masterplaybook.yaml 
         
   # Deploy-Ansible-Playbook:
   #   needs: [Push-Docker-Image]
