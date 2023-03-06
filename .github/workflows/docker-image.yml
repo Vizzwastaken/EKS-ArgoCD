@@ -82,14 +82,13 @@ jobs:
           host: 34.238.115.106
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            ansible-playbook masterplaybook.yaml 
+          
 
-
-      # - name: SSH
-      #   run: |
-      #     ls
-      #     ssh -i ${{ secrets.SSH_KEY }} ubuntu@ec2-34-238-115-106.compute-1.amazonaws.com
+      - name: SSH
+        run: |
+          ls
+          echo "${{ secrets.SSH_KEY }}" >> key.pem
+          ssh -i key.pem ubuntu@ec2-34-238-115-106.compute-1.amazonaws.com
 
       # - name: Run Ansible playbook
       #   run: |
