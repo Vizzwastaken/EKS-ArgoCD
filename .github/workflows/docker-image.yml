@@ -86,7 +86,9 @@ jobs:
           target: /home/ubuntu/
 
       - name: Run Ansible playbook
-        run: ansible-playbook /home/ubuntu/ansible/masterplaybook.yml -i /etc/ansible/hosts 
+        run: |
+           ls 
+           ansible-playbook /home/ubuntu/ansible/masterplaybook.yml -i /etc/ansible/hosts 
         
   # Deploy-Ansible-Playbook:
   #   needs: [Push-Docker-Image]
