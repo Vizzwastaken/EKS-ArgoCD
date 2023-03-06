@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  AWS_REGION: us-east-1
+  REMOTE_HOST: ip-172-31-89-254.ec2.internal
+  REMOTE_USER: ubuntu
+
 jobs:
   Basic-Quality-Checks:
     runs-on: ubuntu-latest
@@ -63,46 +68,65 @@ jobs:
         with:
           push: true
           tags: vizzwastaken/demo:latest
-        
-  Deploy-Ansible-Playbook:
+
+  Conenct-To-Host:
     needs: [Push-Docker-Image]
     runs-on: ubuntu-latest
     steps:
       - name: Check out
         uses: actions/checkout@v3
-        
-      - name: Pull
-        uses: docker/build-push-action@v4
+
+      - name: Copy Ansible playbook
+        uses: appleboy/scp-action@master
         with:
-          pull: true
-          tags: vizzwastaken/demo:latest
+          host: 34.238.115.106
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          source: .
+          target: /home/ubuntu/
+
+      - name: Run Ansible playbook
+        run: ansible-playbook /home/ubuntu/ansible/deploy.yml -i /home/ubuntu/ansible/hosts 
         
-      - name: Install Ansible
-        run: |
-          sudo apt-add-repository ppa:ansible/ansible
-          sudo apt update
-          sudo apt install ansible
+  # Deploy-Ansible-Playbook:
+  #   needs: [Push-Docker-Image]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out
+  #       uses: actions/checkout@v3
+        
+  #     - name: Pull
+  #       uses: docker/build-push-action@v4
+  #       with:
+  #         pull: true
+  #         tags: vizzwastaken/demo:latest
+        
+  #     # - name: Install Ansible
+  #     #   run: |
+  #     #     sudo apt-add-repository ppa:ansible/ansible
+  #     #     sudo apt update
+  #     #     sudo apt install ansible
         
 
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-            key: ${{ secrets.SSH_KEY }}
-            known_hosts: ${{ secrets.KNOWN_HOST }}
+  #     # - name: Install SSH key
+  #     #   uses: shimataro/ssh-key-action@v2
+  #     #   with:
+  #     #       key: ${{ secrets.SSH_KEY }}
+  #     #       known_hosts: ${{ secrets.KNOWN_HOST }}
             
           
-      - name: Add Inventory File
-        run: |
-          sudo sh -c "echo [servers] > /etc/ansible/hosts"
-          sudo sh -c "echo 34.238.115.106 >> /etc/ansible/hosts"
-          sudo cat /etc/ansible/hosts
+  #     # - name: Add Inventory File
+  #     #   run: |
+  #     #     sudo sh -c "echo [servers] > /etc/ansible/hosts"
+  #     #     sudo sh -c "echo 34.238.115.106 >> /etc/ansible/hosts"
+  #     #     sudo cat /etc/ansible/hosts
         
-      - name: disbale hostkey
-        run: export ANSIBLE_HOST_KEY_CHECKING=False
+  #     # - name: disbale hostkey
+  #     #   run: export ANSIBLE_HOST_KEY_CHECKING=False
 
           
-      - name: Run Playbook
-        run: ansible-playbook masterplaybook.yaml --extra-vars pass=${{ secrets.DOCKER_PASS }}
+  #     - name: Run Playbook
+  #       run: ansible-playbook masterplaybook.yaml --extra-vars pass=${{ secrets.DOCKER_PASS }}
         
 
           
