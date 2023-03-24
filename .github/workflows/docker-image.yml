@@ -76,72 +76,16 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      # - name: Copy Ansible playbook
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: 34.238.115.106
-      #     username: ubuntu
-      #     key: ${{ secrets.SSH_KEY }}
-      #     source: ./ansible
-      #     target: /home/ubuntu/
+      - name: Copy Ansible playbook
+        uses: appleboy/scp-action@master
+        with:
+          host: 34.207.89.122 
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          source: ./ansible
+          target: /home/ubuntu/
           
 
-      - name: SSH
-        run: |
-          ls
-          echo "${{ secrets.SSH_KEY }}" >> key.pem
-          chmod 400 key.pem
-          ssh -tt -i  key.pem -o  UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@ec2-44-206-252-174.compute-1.amazonaws.com
-        shell: pwsh
-
-      # - name: Run Ansible playbook
-      #   run: |
-      #      ls 
-      #      ansible-playbook masterplaybook.yaml 
-        
-  # Deploy-Ansible-Playbook:
-  #   needs: [Push-Docker-Image]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out
-  #       uses: actions/checkout@v3
-        
-  #     - name: Pull
-  #       uses: docker/build-push-action@v4
-  #       with:
-  #         pull: true
-  #         tags: vizzwastaken/demo:latest
-        
-  #     # - name: Install Ansible
-  #     #   run: |
-  #     #     sudo apt-add-repository ppa:ansible/ansible
-  #     #     sudo apt update
-  #     #     sudo apt install ansible
-        
-
-  #     # - name: Install SSH key
-  #     #   uses: shimataro/ssh-key-action@v2
-  #     #   with:
-  #     #       key: ${{ secrets.SSH_KEY }}
-  #     #       known_hosts: ${{ secrets.KNOWN_HOST }}
-            
-          
-  #     # - name: Add Inventory File
-  #     #   run: |
-  #     #     sudo sh -c "echo [servers] > /etc/ansible/hosts"
-  #     #     sudo sh -c "echo 34.238.115.106 >> /etc/ansible/hosts"
-  #     #     sudo cat /etc/ansible/hosts
-        
-  #     # - name: disbale hostkey
-  #     #   run: export ANSIBLE_HOST_KEY_CHECKING=False
-
-          
-  #     - name: Run Playbook
-  #       run: ansible-playbook masterplaybook.yaml --extra-vars pass=${{ secrets.DOCKER_PASS }}
-        
-
-          
-          
     
     
 
