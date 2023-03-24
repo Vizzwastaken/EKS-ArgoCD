@@ -82,7 +82,7 @@ jobs:
           host: 34.207.89.122 
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          source: ./ansible
+          source: .
           target: /home/ubuntu/
           
 
