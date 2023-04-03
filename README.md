@@ -1,4 +1,7 @@
 # Deploying Docker Containers with GitHub Actions and Ansible Playbook
+
+![flow (1)](https://user-images.githubusercontent.com/91386217/229526138-77365754-9ab6-4578-9a6c-0f8db62e1fa9.jpg)
+
 This document outlines the process of deploying a Docker container to a set of worker nodes using GitHub Actions and Ansible Playbook. The deployment process involves the following steps:
 
 #### Pushing the code from the local repository to the GitHub repository.
