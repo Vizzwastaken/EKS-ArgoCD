@@ -2,9 +2,9 @@
 This document outlines the process of deploying a Docker container to a set of worker nodes using GitHub Actions and Ansible Playbook. The deployment process involves the following steps:
 
 #### Pushing the code from the local repository to the GitHub repository.
-### Triggering the GitHub Actions pipeline. 
-### Checking for code quality and required files, building a Docker image from the Dockerfile, and uploading it to Docker Hub. Then copying the Ansible playbook from the repository to the MasterNode. 
-### Installing Docker and its required packages in the worker nodes using Ansible Playbook. Also installing Python. Then logging into Docker Hub and pulling the image and running the container.**
+#### Triggering the GitHub Actions pipeline. 
+#### Checking for code quality and required files, building a Docker image from the Dockerfile, and uploading it to Docker Hub. Then copying the Ansible playbook from the repository to the MasterNode. 
+#### Installing Docker and its required packages in the worker nodes using Ansible Playbook. Also installing Python. Then logging into Docker Hub and pulling the image and running the container.**
 
 ## Step 1: Pushing the code to GitHub
 The first step is to push the code from the local repository to the GitHub repository. This can be done using the git push command.
