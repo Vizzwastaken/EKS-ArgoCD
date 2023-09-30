@@ -1,6 +1,7 @@
 # Base image
 FROM python:3
 # Copy the script
-COPY calculator.py /calculator.py
+WORKDIR /app
+COPY calculator.py /app
 # Run the script
 CMD ["python","/calculator.py"]
