@@ -23,7 +23,7 @@
     - name: Docker Login
       docker_login:
         username: vizzwastaken
-        password: 123456789
+        password: 'pass'
         reauthorize: yes
 
     - name: Pull the container
