@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-service
+  labels:
+    app: argo
+spec:
+  selector:
+    app: argo
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
