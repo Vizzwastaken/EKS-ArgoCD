@@ -7,6 +7,7 @@ metadata:
 spec:
   selector:
     app: argo
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
